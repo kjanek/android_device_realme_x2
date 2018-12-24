@@ -206,3 +206,14 @@ PRODUCT_PACKAGES += \
 # Touch
 PRODUCT_PACKAGES += \
     lineage.touch@1.0-service.x2
+
+# WiFi Display
+PRODUCT_PACKAGES += \
+    libdisplayconfig \
+    libdisplayconfig.vendor \
+    libnl \
+    libqdMetaData \
+    libqdMetaData.system
+
+PRODUCT_BOOT_JARS += \
+    WfdCommon
