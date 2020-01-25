@@ -58,7 +58,7 @@ namespace lineage {
 namespace biometrics {
 namespace fingerprint {
 namespace inscreen {
-namespace V1_0 {
+namespace V1_1 {
 namespace implementation {
 
 FingerprintInscreen::FingerprintInscreen():mFingerPressed{false} {
@@ -77,51 +77,62 @@ Return<int32_t> FingerprintInscreen::getSize() {
 }
 
 Return<void> FingerprintInscreen::onStartEnroll() {
-    LOG(INFO) << __func__ << "start";
+    LOG(INFO) << __func__ << " start";
+    set(HBM_PATH, FP_BEGIN);
+    set(DIMLAYER_PATH, FP_BEGIN);
     return Void();
 }
 
 Return<void> FingerprintInscreen::onFinishEnroll() {
-    LOG(INFO) << __func__ << "start";
+    LOG(INFO) << __func__ << " start";
+    set(HBM_PATH, FP_ENDIT);
+    set(DIMLAYER_PATH, FP_ENDIT);
+    return Void();
+}
+
+Return<void> FingerprintInscreen::switchHbm(bool enabled) {
+    if (enabled) {
+        set(HBM_PATH, FP_BEGIN);
+    } else {
+        set(HBM_PATH, FP_ENDIT);
+    }
     return Void();
 }
 
 Return<void> FingerprintInscreen::onPress() {
-    LOG(INFO) << __func__ << "start";
-    mFingerPressed = true;
-    set(DIMLAYER_PATH, FP_BEGIN);
-    set(HBM_PATH, FP_BEGIN);
-    std::thread([this]() {
-        std::this_thread::sleep_for(std::chrono::milliseconds(69));
-        if (mFingerPressed) {
-            set(FP_PRESS_PATH, FP_BEGIN);
-        }
-    }).detach();
-    LOG(INFO) << __func__ << "exit";
+    LOG(INFO) << __func__ << " start";
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
-    LOG(INFO) << __func__ << "start";
+    LOG(INFO) << __func__ << " start";
     mFingerPressed = false;
     set(FP_PRESS_PATH, FP_ENDIT);
     set(DIMLAYER_PATH, FP_ENDIT);
-    set(HBM_PATH, FP_ENDIT);
-    LOG(INFO) << __func__ << "exit";
+    LOG(INFO) << __func__ << " exit";
     return Void();
 }
 
 Return<void> FingerprintInscreen::onShowFODView() {
-    LOG(INFO) << __func__;
+    mFingerPressed = true;
+    LOG(INFO) << __func__ << " start";
+    set(DIMLAYER_PATH, FP_BEGIN);
+    std::thread([this]() {
+        std::this_thread::sleep_for(std::chrono::milliseconds(23));
+        if (mFingerPressed) {
+            LOG(INFO) << "SETTING FP PRESS PATH"
+            set(FP_PRESS_PATH, FP_BEGIN);
+        }
+    }).detach();
+    LOG(INFO) << __func__ <<" exit";
     return Void();
 }
 
 Return<void> FingerprintInscreen::onHideFODView() {
-    LOG(INFO) << __func__ << "start";
-    set(HBM_PATH, FP_ENDIT);
+    LOG(INFO) << __func__ << " start";
     set(DIMLAYER_PATH, FP_ENDIT);
     set(FP_PRESS_PATH, FP_ENDIT);
-    LOG(INFO) << __func__ << "exit";
+    LOG(INFO) << __func__ << " exit";
     return Void();
 }
 
@@ -140,7 +151,7 @@ Return<void> FingerprintInscreen::setLongPressEnabled(bool) {
 }
 
 Return<int32_t> FingerprintInscreen::getDimAmount(int32_t brightness) {
-    LOG(INFO) << __func__ << "start";
+    LOG(INFO) << __func__ << " start";
     return(int32_t)((brightness > 498) ? (255 * (1.0 - pow(brightness / 2047.0 * 430.0 / 600.0, 0.455))):
             (255 * (1.0 - pow(brightness / 1605.0, 0.455)))); 
 }
@@ -158,7 +169,7 @@ Return<void> FingerprintInscreen::setCallback(const sp<::vendor::lineage::biomet
 }
 
 }  // namespace implementation
-}  // namespace V1_0
+}  // namespace V1_1
 }  // namespace inscreen
 }  // namespace fingerprint
 }  // namespace biometrics
