@@ -52,12 +52,14 @@ product/lib64/libdpmctmgr.so
 product/lib64/libdpmfdmgr.so
 product/lib64/libdpmframework.so
 product/lib64/libdpmtcm.so
+product/lib64/libspl.so|8c848b95674bb6c9f40415568dafe086a3d952f7
 product/lib/com.qualcomm.qti.dpm.api@1.0.so
 product/lib/libdiag_system.so
 product/lib/libdpmctmgr.so
 product/lib/libdpmfdmgr.so
 product/lib/libdpmframework.so
 product/lib/libdpmtcm.so
+product/lib/libspl.so|ed7f96c3b6162243d8e206b055b670e9d020ea3f
 -product/priv-app/dpmserviceapp/dpmserviceapp.apk
 
 # Display postprocessing
