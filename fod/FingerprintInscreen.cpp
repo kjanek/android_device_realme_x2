@@ -100,7 +100,15 @@ Return<void> FingerprintInscreen::switchHbm(bool enabled) {
 }
 
 Return<void> FingerprintInscreen::onPress() {
+    mFingerPressed = true;
     LOG(INFO) << __func__ << " start";
+    set(DIMLAYER_PATH, FP_BEGIN);
+    std::thread([this]() {
+        std::this_thread::sleep_for(std::chrono::milliseconds(60));
+            LOG(INFO) << "SETTING FP PRESS PATH";
+            set(FP_PRESS_PATH, FP_BEGIN);
+    }).detach();
+    LOG(INFO) << __func__ <<" exit";
     return Void();
 }
 
@@ -114,17 +122,6 @@ Return<void> FingerprintInscreen::onRelease() {
 }
 
 Return<void> FingerprintInscreen::onShowFODView() {
-    mFingerPressed = true;
-    LOG(INFO) << __func__ << " start";
-    set(DIMLAYER_PATH, FP_BEGIN);
-    std::thread([this]() {
-        std::this_thread::sleep_for(std::chrono::milliseconds(23));
-        if (mFingerPressed) {
-            LOG(INFO) << "SETTING FP PRESS PATH"
-            set(FP_PRESS_PATH, FP_BEGIN);
-        }
-    }).detach();
-    LOG(INFO) << __func__ <<" exit";
     return Void();
 }
 
