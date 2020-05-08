@@ -171,7 +171,11 @@ Return<void> FingerprintInscreen::setLongPressEnabled(bool) {
 }
 
 Return<int32_t> FingerprintInscreen::getDimAmount(int32_t brightness) {
-    return (int32_t)(255 * (1.0 - pow(brightness / 1023.0f, 0.455)));
+    double dim = (255 + ((-12.08071) * pow((double)brightness, 0.4)));
+#ifdef FOD_DEBUG
+    LOG(INFO) << "Calculated dim amount was: " << dim;
+#endif
+    return (int32_t)dim;
 }
 
 Return<bool> FingerprintInscreen::shouldBoostBrightness() {
