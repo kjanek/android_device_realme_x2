@@ -72,6 +72,9 @@ public class DeviceSettings extends PreferenceFragment
     private static TwoStatePreference mSmartChargingSwitch;
     public static SeekBarPreference mSeekBarPreference;
 
+/* fixing mResetStats */
+    public static TwoStatePreference mResetStats;
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getContext());
