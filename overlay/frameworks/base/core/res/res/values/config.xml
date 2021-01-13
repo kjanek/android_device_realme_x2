@@ -1169,4 +1169,7 @@
         <!-- ID0:Fingerprint:Strong -->
         <item>0:2:15</item>
     </string-array>
+
+	<bool name="config_enableNetworkLocationOverlay">true</bool>
+	<bool name="config_enableFusedLocationOverlay">true</bool>
 </resources>
