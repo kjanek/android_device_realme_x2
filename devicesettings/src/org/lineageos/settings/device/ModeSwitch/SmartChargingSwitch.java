@@ -32,7 +32,6 @@ import android.util.Log;
 import org.lineageos.settings.device.DeviceSettings;
 
 public class SmartChargingSwitch implements OnPreferenceChangeListener {
-
     private static Context mContext;
 
     public SmartChargingSwitch(Context context) {
@@ -40,7 +39,7 @@ public class SmartChargingSwitch implements OnPreferenceChangeListener {
     }
 
     private static final String FILE = "/sys/class/power_supply/battery/mmi_charging_enable";
-
+    
     public static String getFile() {
         if (Utils.fileWritable(FILE)) {
             return FILE;
