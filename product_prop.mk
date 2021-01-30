@@ -20,3 +20,17 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Override Display Density
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.sf.lcd_density=440
+
+# Media
+PRODUCT_PRODUCT_PROPERTIES += \
+    debug.stagefright.omx_default_rank.sw-audio=16 \
+    persist.vendor.audio.fluence.voicerec=true
+
+# Power-saving props
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.vendor.use_data_netmgrd=true \
+    ro.vold.umsdirtyratio=20 \
+    ro.ril.disable.power.collapse=0 \
+    power.saving.mode=1 \
+    pm.sleep_mode=1
+
