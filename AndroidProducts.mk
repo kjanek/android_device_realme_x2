@@ -15,4 +15,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_X2.mk
+    $(LOCAL_DIR)/aicp_X2.mk
+
+COMMON_LUNCH_CHOICES := \
+    aicp_X2-user \
+    aicp_X2-userdebug \
+    aicp_X2-eng
