@@ -15,4 +15,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_X2.mk
+    $(LOCAL_DIR)/revengeos_X2.mk
+
+COMMON_LUNCH_CHOICES := \
+    revengeos_X2-userdebug \
+    revengeos_X2-user \
+    revengeos_X2-eng
