@@ -15,4 +15,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_X2.mk
+    $(LOCAL_DIR)/calyx_X2.mk
+
+COMMON_LUNCH_CHOICES := \
+    calyx_X2-userdebug \
+    calyx_X2-user \
+    calyx_X2-eng
